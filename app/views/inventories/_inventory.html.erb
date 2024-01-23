@@ -1,0 +1,15 @@
+<div id="<%= dom_id inventory %>">
+  <div class="inventory-item-header">
+    <p>
+      <strong> <h3> <%= inventory.name %> </h3> </strong>
+    
+    </p>
+    <%if can? :destroy, inventory %>
+      <%= link_to "Destroy this inventory", inventory, method: :delete %>
+    <% end %>
+  </div>
+
+  <p>
+    <%= inventory.description ? inventory.description : 'No description available' %>
+  </p>
+</div>
