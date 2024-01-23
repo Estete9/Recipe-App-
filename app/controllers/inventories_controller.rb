@@ -50,6 +50,8 @@ class InventoriesController < ApplicationController
 
   # DELETE /inventories/1 or /inventories/1.json
   def destroy
+    authorize! :destroy, @inventory
+
     @inventory.destroy!
 
     respond_to do |format|
@@ -66,6 +68,6 @@ class InventoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def inventory_params
-      params.require(:inventory).permit(:name)
+      params.require(:inventory).permit(:name, :description)
     end
 end
