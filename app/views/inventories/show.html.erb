@@ -3,5 +3,7 @@
 <div>
   <%= link_to "Back to inventories", inventories_path %>
 
-  <%= button_to "Destroy this inventory", @inventory, method: :delete %>
+  <%if can? :destroy, @inventory %>
+    <%= button_to "Destroy this inventory", @inventory, method: :delete %>
+  <% end %>
 </div>
