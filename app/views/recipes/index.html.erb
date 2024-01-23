@@ -1,2 +1,17 @@
-<h1>Recipes#index</h1>
-<p>Find me in app/views/recipes/index.html.erb</p>
+<%= stylesheet_link_tag 'recipes_index'%>
+
+<div class="recipes">
+  <% @recipes.each do |recipe| %>
+  <div class="recipe">
+    <h2>Recipe <%= recipe.id %> </h2>
+    <p><%= recipe.text%></p>
+  </div>
+  <% end %>
+</div>
+
+
+
+
+
+
+
