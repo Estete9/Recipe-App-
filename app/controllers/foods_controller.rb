@@ -1,5 +1,5 @@
 class FoodsController < ApplicationController
-  before_action :set_food, only: %i[show edit update destroy]
+  before_action :set_food, only: %i[show destroy]
 
   # GET /foods or /foods.json
   def index
@@ -44,7 +44,7 @@ class FoodsController < ApplicationController
 
   # DELETE /foods/1 or /foods/1.json
   def destroy
-    @food.destroy!
+    authorize! :destroy, @food
 
     respond_to do |format|
       format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
