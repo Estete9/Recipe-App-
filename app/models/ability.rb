@@ -4,13 +4,9 @@ class Ability
   def initialize(user)
     return unless user.persisted?
 
-    can :create, Inventory
-    can :read, Inventory
-    can :destroy, Inventory, user_id: user.id
-
-    can :create, Food
-    can :read, Food
-    can :destroy, Food, user_id: user.id
+    can :create, [Inventory, Food]
+    can :read, [Inventory, Food]
+    can :destroy, [Inventory, Food], user_id: user.id
 
     # Define abilities for the user here. For example:
     #

@@ -14,7 +14,7 @@
       <% @foods.each do |food| %>
         <%= render food %>
         <p>
-          <%= button_to "Destroy this food", food, method: :delete %>
+          <%= link_to "Destroy this food", food_path(food.id), data: { confirm: 'Are you sure?', turbo_method: :delete } %>
         </p>
       <% end %>
     </tbody>
