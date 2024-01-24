@@ -3,7 +3,7 @@ class FoodsController < ApplicationController
 
   # GET /foods or /foods.json
   def index
-    @foods = Food.all
+    @foods = Food.where(user_id: current_user.id)
   end
 
   # GET /foods/1 or /foods/1.json
@@ -13,9 +13,6 @@ class FoodsController < ApplicationController
   def new
     @food = Food.new
   end
-
-  # GET /foods/1/edit
-  def edit; end
 
   # POST /foods or /foods.json
   def create

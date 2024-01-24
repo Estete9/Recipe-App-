@@ -14,7 +14,7 @@
       <% @foods.each do |food| %>
         <%= render food %>
         <p>
-          <%= link_to "Show this food", food %>
+          <%= button_to "Destroy this food", food, method: :delete %>
         </p>
       <% end %>
     </tbody>
