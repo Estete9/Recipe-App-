@@ -1,19 +1,26 @@
 <div id="<%= dom_id food %>">
+<table class="table table-border table-striped" id="<%= dom_id food %>">
+<tbody>
   <tr>
-    <td>
-      <%= food.name %>
-    </td>
-
-    <td>
-      <%= food.measurement_unit %>
-    </td>
-
-    <td>
-      <%= food.price %>
-    </td>
-
-    <td>
-      <%= button_to "Destroy this food", food, method: :delete %>
-    </td>
+    <th>Name</th>
+    <td><%= food.name %></td>
   </tr>
+  <tr>
+    <th>Measurement unit</th>
+    <td><%= food.measurement_unit %></td>
+  </tr>
+  <tr>
+    <th>Quantity</th>
+    <td><%= food.quantity %></td>
+  </tr>
+  <tr>
+    <th>Price</th>
+    <td><%= food.price %></td>
+  </tr>
+  <tr>
+    <th>User</th>
+    <td><%= food.user.name %></td>
+  </tr>
+</tbody>
+</table>
 </div>
