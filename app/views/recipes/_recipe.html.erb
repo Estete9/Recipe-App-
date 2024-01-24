@@ -5,6 +5,7 @@
   <div>
     <% if can? :destroy, recipe %>
     <%= link_to "REMOVE", recipe_path(recipe.id), data: { confirm: 'Are you sure?', turbo_method: :delete }, turbo_method: :delete %>
+    <% end %>
   </div>
   <p>
     <%= recipe.description %>
