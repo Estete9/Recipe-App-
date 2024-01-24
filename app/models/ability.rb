@@ -4,9 +4,10 @@ class Ability
   def initialize(user)
     return unless user.persisted?
 
-    can :create, [Inventory, Food]
-    can :read, [Inventory, Food]
-    can :destroy, [Inventory, Food], user_id: user.id
+    can :create, [Inventory, Food, Recipe]
+    can :read, [Inventory, Food, Recipe]
+    can :destroy, [Inventory, Food, Recipe], user_id: user.id
+
 
     # Define abilities for the user here. For example:
     #
@@ -14,7 +15,6 @@ class Ability
     #   can :read, :all
     #   return unless user.admin?
     #   can :manage, :all
-
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.

@@ -2,8 +2,10 @@
 
 Rails.application.routes.draw do
   resources :foods, except: [:update, :edit]
+ 
+  resources :recipes, except: [:update, :edit ]
   resources :inventories, except: [:update, :edit]
-
+  
   devise_for :users, controllers: {
         sessions: 'users/sessions',
         registrations: 'users/registrations'
