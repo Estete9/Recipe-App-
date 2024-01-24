@@ -1,6 +1,6 @@
 <div id="recipes">
   <% @recipes.each do |recipe| %>
-    <% link_to recipe_path(recipe.id) do %>
+    <%= link_to recipe_path(recipe.id) do %>
     <%= render recipe %>
     <% end %>
   <% end %>

@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(user_id: current_user.id)
   end
 
   # GET /recipes/1 or /recipes/1.json
@@ -17,7 +17,8 @@ class RecipesController < ApplicationController
 
   # POST /recipes or /recipes.json
   def create
-    @recipe = Recipe.new(recipe_params)
+    @user = current_user
+    @recipe = Recipe.new(recipe_params.merge(user:@user))
 
     respond_to do |format|
       if @recipe.save
