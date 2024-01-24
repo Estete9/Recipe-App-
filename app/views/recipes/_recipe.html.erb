@@ -1,0 +1,13 @@
+<div id="<%= dom_id recipe %>">
+  <h2>
+    <%= recipe.name %>
+  </h2>
+  <div>
+    <% if can? :destroy, recipe %>
+    <%= link_to "REMOVE", recipe_path(recipe.id), data: { confirm: 'Are you sure?', turbo_method: :delete }, turbo_method: :delete %>
+  </div>
+  <p>
+    <%= recipe.description %>
+  </p>
+
+</div>
