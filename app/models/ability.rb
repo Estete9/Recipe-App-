@@ -8,9 +8,9 @@ class Ability
     can :read, Inventory
     can :destroy, Inventory, user_id: user.id
 
-    can :create, Foods
-    can :read, Foods
-    can :destroy, Foods, user_id: user.id
+    can :create, Food
+    can :read, Food
+    can :destroy, Food, user_id: user.id
 
     # Define abilities for the user here. For example:
     #
