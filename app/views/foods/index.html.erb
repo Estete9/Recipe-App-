@@ -1,0 +1,24 @@
+<h1>List Foods</h1>
+
+<div id="foods">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Measurement unit</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <%= render food %>
+        <p>
+          <%= link_to "Destroy this food", food_path(food.id), data: { confirm: 'Are you sure?', turbo_method: :delete } %>
+        </p>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to "New food", new_food_path %>

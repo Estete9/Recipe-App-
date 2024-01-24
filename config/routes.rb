@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-
+  resources :foods, except: [:update, :edit]
+ 
   resources :recipes, except: [:update, :edit ]
   resources :inventories, except: [:update, :edit]
   
