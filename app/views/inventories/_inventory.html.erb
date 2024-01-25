@@ -9,25 +9,33 @@
   <p>
     <%= inventory.description ? inventory.description : 'No description available' %>
   </p>
+  <% if action_name == 'show' %>
+      <table>
+        <thead>
+          <tr>
+            <th>Food</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Food</th>
-        <th>Quantity</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @food_inventories.each do |food_inventory| %>
-        <tr>
-          <td><%= food_inventory.food.name %></td>
-          <td><%= food_inventory.quantity %></td>
-          <td>
-            <%= link_to "Remove", food_inventory_path(food_inventory.id), class: "btn btn-ountline-danger", method: :delete, data: { turbo_method: :delete } %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+        <% if @food_inventories.any? %>
+          <tbody>
+            <% @food_inventories.each do |food_inventory| %>
+              <tr>
+                <td><%= food_inventory.food.name %></td>
+                <td><%= food_inventory.quantity %></td>
+                <td>
+                  <%= link_to "Remove", food_inventory_path(food_inventory.id), class: "btn btn-ountline-danger", method: :delete, data: { turbo_method: :delete } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% else %>
+          <tr>
+            <td colspan="3">Empty list for now</td>
+          </tr>
+        <% end %>
+      </table>
+  <% end %>
 </div>
