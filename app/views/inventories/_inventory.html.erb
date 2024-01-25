@@ -4,9 +4,6 @@
       <strong> <h3> <%= inventory.name %> </h3> </strong>
     
     </p>
-    <%if can? :destroy, inventory %>
-      <%= link_to "Destroy this inventory", inventory_path(inventory.id), data: { confirm: 'Are you sure?', turbo_method: :delete }, method: :delete %>
-    <% end %>
   </div>
 
   <p>
