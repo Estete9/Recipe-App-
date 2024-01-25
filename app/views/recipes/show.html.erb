@@ -1,30 +1,48 @@
-
-
 <div>
   <div class="show-container">
-  <h2><%= @recipe.name %></h2>
-  <p>Preparation Time: <%= @recipe.preparation_time %> </p>
-  <p>Cooking Time: <%= @recipe.cooking_time %> </p>
-  <p> <%= @recipe.description %>
-
+    <h2><%= @recipe.name %></h2>
+    <p>Preparation Time: <%= @recipe.preparation_time %> </p>
+    <p>Cooking Time: <%= @recipe.cooking_time %> </p>
+    <p> <%= @recipe.description %></p>
+  <div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+  <label class="form-check-label" for="flexSwitchCheckChecked">Public</label>
+</div>
   </div>
   
   <div>
-  <%= button_to "Back to recipes", recipes_path %>
-
-  <%= link_to "Add Ingredient", new_recipe_food_path(recipe_id: @recipe.id) %>
-  <hr>
+    <%= link_to "Generate shopping list", recipes_path %>
+    <%= link_to "Add Ingredient", new_recipe_food_path(recipe_id: @recipe.id) %>
+    <hr>
   </div>
 
-  <div class="ingredient-display">
-    <% @recipe_food.each do |recipe_food| %>
-    <%= render recipe_food%>
+<div class="ingredient-display">
+  <table>
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipe_food.each do |recipe_food| %>
+        <tr>
+          <td><%= recipe_food.food.name %></td>
+          <td><%= recipe_food.quantity %></td>
+          <td><%= recipe_food.food.price %></td>
+          <td><button>Modify</button>
+          <%= link_to "Remove", recipe_food_path(recipe_food.id), class: "btn btn-ountline-danger", method: :delete, data: { turbo_method: :delete } %>
+          
+        </tr>
+      <% end %>
 
-    <% end %>
-
-  </div>
-
-
+      <% if @recipe_food.empty? %>
+        <tr>
+          <td colspan="4">No list available at this moment. Please add ingredient</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-
