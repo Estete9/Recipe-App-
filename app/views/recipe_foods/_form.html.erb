@@ -1,4 +1,4 @@
-<%= form_with(model: RecipeFood.new, url: recipe_foods_path, local: true) do |form| %>
+<%= form_with(model: @recipe_food, url: recipe_foods_path, local: true) do |form| %>
 <% if @recipe_food.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(@recipe_food.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
@@ -12,8 +12,11 @@
   <% end %>
 
 <div>
+     <%= form.hidden_field :recipe_id, value: @recipe_id %>
+</div>
+<div>
   <%= form.label :Ingredient %>
-  <%= form.collection_select(:food_id, @foods, :id, :name, { prompt: "Select a Food" }, { class: "form-select" }) %>
+  <%= form.collection_select(:food_id, Food.all, :id, :name, { prompt: "Select a Food" }, { class: "form-select" }) %>
 </div>
 
 
@@ -21,7 +24,7 @@
 
 <div>
   <%= form.label :Quantity %>
-  <%= form.text_field :quantity %>
+  <%= form.number_field :quantity %>
 </div>
 
 <div>
