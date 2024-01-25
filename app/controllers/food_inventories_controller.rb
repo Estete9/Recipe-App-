@@ -13,8 +13,15 @@ class FoodInventoriesController < ApplicationController
     else
       render :new, alert: 'Failed to add ingredient'
     end
+  end
 
+  def destroy
+    # @inventory_id = params[:inventory_id]
+    @food_inventory = FoodInventory.find(params[:id])
 
+    @food_inventory.destroy!
+
+    redirect_to inventory_path(@food_inventory.inventory_id)
   end
 
   private
