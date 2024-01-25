@@ -5,7 +5,7 @@
       <%= link_to inventory_path(inventory.id) do %>
     <%= render inventory %>
       <%if can? :destroy, inventory %>
-      <%= link_to "Destroy this inventory", inventory_path(inventory.id), data: { confirm: 'Are you sure?', turbo_method: :delete }, method: :delete %>
+      <%= link_to "Remove", inventory_path(inventory.id), data: { confirm: 'Are you sure?', turbo_method: :delete }, method: :delete %>
     <% end %>
     <% end %>
   <% end %>
