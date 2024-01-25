@@ -9,4 +9,25 @@
   <p>
     <%= inventory.description ? inventory.description : 'No description available' %>
   </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @food_inventories.each do |food_inventory| %>
+        <tr>
+          <td><%= food_inventory.food.name %></td>
+          <td><%= food_inventory.quantity %></td>
+          <td>
+            <%= link_to "Remove", food_inventory_path(food_inventory.id), data: { confirm: 'Are you sure?', turbo_method: :delete } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
