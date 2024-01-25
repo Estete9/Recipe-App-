@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+
+  resources :food_inventories
+
   resources :foods, except: [:update, :edit]
- 
+
   resources :recipes, except: [:update, :edit ]
   resources :inventories, except: [:update, :edit]
   resources :recipe_foods, only: [:create, :show, :index, :new ]
   
+
   devise_for :users, controllers: {
         sessions: 'users/sessions',
         registrations: 'users/registrations'
