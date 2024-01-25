@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[ show destroy ]
+  before_action :set_recipe, only: %i[show destroy]
 
   # GET /recipes or /recipes.json
   def index
@@ -7,8 +7,7 @@ class RecipesController < ApplicationController
   end
 
   # GET /recipes/1 or /recipes/1.json
-  def show
-  end
+  def show; end
 
   # GET /recipes/new
   def new
@@ -18,11 +17,11 @@ class RecipesController < ApplicationController
   # POST /recipes or /recipes.json
   def create
     @user = current_user
-    @recipe = Recipe.new(recipe_params.merge(user:@user))
+    @recipe = Recipe.new(recipe_params.merge(user: @user))
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully created." }
+        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,19 +35,20 @@ class RecipesController < ApplicationController
     @recipe.destroy!
 
     respond_to do |format|
-      format.html { redirect_to recipes_url, notice: "Recipe was successfully destroyed." }
+      format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def recipe_params
-      params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public, :user)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def recipe_params
+    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public, :user)
+  end
 end
