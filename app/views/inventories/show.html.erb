@@ -1,5 +1,7 @@
 <%= render @inventory %>
 
+<%= link_to "Add ingredient", new_food_inventory_path(inventory_id: @inventory.id), class: "btn btn-outline-success" %>
+
 <div>
   <%= link_to "Back to inventories", inventories_path %>
 </div>
