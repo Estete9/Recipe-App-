@@ -8,10 +8,23 @@
   <p> <%= @recipe.description %>
 
   </div>
+  
+  <div>
   <%= button_to "Back to recipes", recipes_path %>
 
-  <%= link_to "Add Ingredient", new_recipe_food_path %>
+  <%= link_to "Add Ingredient", new_recipe_food_path(recipe_id: @recipe.id) %>
   <hr>
+  </div>
+
+  <div class="ingredient-display">
+    <% @recipe_food.each do |recipe_food| %>
+    <%= render recipe_food%>
+
+    <% end %>
+
+  </div>
+
+
 </div>
 
 
