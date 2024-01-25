@@ -6,8 +6,8 @@
 <% else %> 
   <h1 class="text-success">My Recipes</h1>
 <% end %>
-
 </div>
+
   <% @recipes.each do |recipe| %>
     <%= link_to recipe_path(recipe.id) do %>
     <%= render recipe %>
