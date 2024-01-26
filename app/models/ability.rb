@@ -10,7 +10,6 @@ class Ability
     can :read, [Inventory, Food, Recipe]
     can :destroy, [Inventory, Food, Recipe], user_id: user.id
 
-
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?

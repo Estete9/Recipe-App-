@@ -2,12 +2,12 @@
 
 <div style="display: flex; justify-content: space-between;">
   <div>
-    <p><strong>Amount of Food to Buy:</strong> <%= @missing_foods.size %></p>
-    <p><strong>Recipe:</strong> <%= @recipe.name %></p>
+    <p><strong>Amount of Food to Buy:</strong> <%= 'TBI' %></p>
+    <p><strong>Total Value of Food Needed:</strong> <%= 'TBI' %></p>
   </div>
 
   <div>
-    <p><strong>Total Value of Food Needed:</strong> <%= @missing_foods.sum(&:price) %></p>
+    <p><strong>Recipe:</strong> <%= @recipe.name %></p>
     <p><strong>Inventory:</strong> <%= @inventory.name %></p>
   </div>
 </div>
@@ -20,13 +20,19 @@
       <th>Price</th>
     </tr>
   </thead>
-  <tbody>
-    <% @missing_foods.each do |food| %>
-      <tr>
-        <td><%= food.name %></td>
-        <td><%= food.quantity %></td>
-        <td><%= food.price %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <% if @missing_foods.any? %>
+    <tbody>
+      <% @missing_foods.each do |item| %>
+        <tr>
+          <td><%= item[:food].name %></td>
+          <td><%= item[:quantity_difference] %></td>
+          <td><%= item[:price] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <tr>
+      <td colspan="3">Empty list for now</td>
+    </tr>
+  <% end %>
 </table>
