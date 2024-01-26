@@ -24,7 +24,7 @@
             <% @food_inventories.each do |food_inventory| %>
               <tr>
                 <td><%= food_inventory.food.name %></td>
-                <td><%= food_inventory.quantity %></td>
+                <td><%= "#{food_inventory.quantity} #{food_inventory.food.measurement_unit}" %></td>
                 <td>
                   <%= link_to "Remove", food_inventory_path(food_inventory.id), class: "btn btn-ountline-danger", method: :delete, data: { turbo_method: :delete } %>
                 </td>
