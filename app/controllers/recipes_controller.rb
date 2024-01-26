@@ -13,7 +13,7 @@ class RecipesController < ApplicationController
     @inventory = Inventory.includes(:food_inventories).find(params[:inventory_id])
 
     @missing_foods = calculate_quantity_differences(@recipe, @inventory)
-    @total_missing_foods = calculate_total_missing_foods(@missing_foods)
+    @total_missing_foods = @missing_foods.length
     @total_price = calculate_total_price(@missing_foods)
   end
 
@@ -71,16 +71,6 @@ class RecipesController < ApplicationController
   end
 
   private
-
-  def calculate_total_missing_foods(differences)
-    total_quantity = 0
-
-    differences.each do |item|
-      total_quantity += item[:quantity_difference]
-    end
-
-    total_quantity
-  end
 
   def calculate_total_price(differences)
     total_price = 0
