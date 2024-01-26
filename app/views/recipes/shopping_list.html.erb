@@ -25,7 +25,7 @@
       <% @missing_foods.each do |item| %>
         <tr>
           <td><%= item[:food].name %></td>
-          <td><%= item[:quantity_difference] %></td>
+          <td><%= "#{item[:quantity_difference]} #{ item[:food].measurement_unit}" %> </td>
           <td><%= item[:price] %></td>
         </tr>
       <% end %>
