@@ -31,7 +31,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_25_120300) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.integer "quantity"
     t.index ["user_id"], name: "index_foods_on_user_id"
   end
 
