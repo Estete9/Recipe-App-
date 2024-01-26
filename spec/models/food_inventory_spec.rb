@@ -1,16 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe FoodInventory, type: :model do
+
+  let(:user) { user = create(:user) }
+  let(:inventory) { inventory = create(:inventory, user: user) }
+  let(:food) { food = create(:food, user: user) }
+
+
   it 'is valid with valid attributes' do
-    user = create(:user)
-    inventory = create(:inventory, user: user)
-    food = create(:food, user: user)
     food_inventory = create(:food_inventory, inventory: inventory, food: food)
     expect(food_inventory).to be_valid
   end
 
   it 'is not valid without a quantity' do
-    food_inventory = build(:food_inventory, quantity: nil)
+    food_inventory = build(:food_inventory, quantity: nil, inventory: inventory, food: food)
     expect(food_inventory).to_not be_valid
   end
 
