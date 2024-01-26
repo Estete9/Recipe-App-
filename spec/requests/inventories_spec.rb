@@ -76,7 +76,6 @@ RSpec.describe '/inventories', type: :request do
         end.to change(Inventory, :count).by(0)
       end
 
-
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post inventories_url, params: { inventory: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
