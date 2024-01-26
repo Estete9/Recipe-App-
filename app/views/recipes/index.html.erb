@@ -1,9 +1,16 @@
 <div id="recipes">
+
+<div class="col-lg-4 col-10 d-flex ">
+<% if @public_page %>
+  <h1 class="text-success">Public Recipes</h1>
+<% else %> 
+  <h1 class="text-success">My Recipes</h1>
+<% end %>
+</div>
+
   <% @recipes.each do |recipe| %>
     <%= link_to recipe_path(recipe.id) do %>
     <%= render recipe %>
     <% end %>
   <% end %>
 </div>
-
-<%= link_to "New recipe", new_recipe_path %>
