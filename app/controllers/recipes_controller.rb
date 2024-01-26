@@ -116,7 +116,7 @@ class RecipesController < ApplicationController
         differences << {
           food: recipe_food.food,
           quantity_difference: quantity_difference,
-          price: recipe_food.food.price
+          price: recipe_food.food.price * quantity_difference
         }
     end
 
