@@ -50,6 +50,26 @@ class RecipesController < ApplicationController
     end
   end
 
+  def general_shopping_list
+    @recipes = current_user.recipes
+    @inventories = current_user.inventories
+    counter = 0
+
+    # Get all foods from the user's recipes
+    recipe_foods = @recipes.flat_map(&:recipe_foods)
+    recipe_foods_foods = recipe_foods.map(&:food)
+
+    # Get all foods from the user's inventories
+    inventory_foods = @inventories.flat_map(&:food_inventories)
+    inventory_foods_foods = inventory_foods.map(&:food)
+
+    # Find missing foods (those in recipes but not in inventories)
+    @missing_foods = recipe_foods_foods - inventory_foods_foods
+    if @missing_foods.any?
+      @counter +=1
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
