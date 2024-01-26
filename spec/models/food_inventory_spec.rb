@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe FoodInventory, type: :model do
 
-  let(:user) { user = create(:user) }
-  let(:inventory) { inventory = create(:inventory, user: user) }
-  let(:food) { food = create(:food, user: user) }
+  let(:user) { create(:user) }
+  let(:inventory) { create(:inventory, user: user) }
+  let(:food) { create(:food, user: user) }
 
 
   it 'is valid with valid attributes' do
