@@ -2,6 +2,8 @@
 
 Rails.application.routes.draw do
 
+  root 'recipes#public'
+  
   resources :food_inventories
 
   resources :foods, except: [:update, :edit]
