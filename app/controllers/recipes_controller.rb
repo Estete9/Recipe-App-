@@ -9,10 +9,10 @@ class RecipesController < ApplicationController
   end
 
   def shopping_list
-    @recipe = Recipe.find(params[:recipe_id])
-    @inventory = Recipe.find(params[:inventory_id])
+    @recipe = Recipe.includes(:recipe_foods).find(params[:recipe_id])
+    @inventory = Inventory.includes(:food_inventories).find(params[:inventory_id])
 
-    @missing_foods = @recipe.foods - @inventory.foods
+    @missing_foods = calculate_quantity_differences(@recipe, @inventory)
   end
 
   # GET /recipes or /recipes.json
@@ -70,16 +70,6 @@ class RecipesController < ApplicationController
 
   private
 
-  def calculate_total_price(differences)
-    total_price = 0
-    differences.each do |item|
-      price = item[:price]
-      total_price += price if price.present?
-    end
-
-    total_price
-  end
-
   def calculate_quantity_differences(recipe, inventory)
     differences = []
 
@@ -96,7 +86,7 @@ class RecipesController < ApplicationController
         differences << {
           food: recipe_food.food,
           quantity_difference: quantity_difference,
-          price: recipe_food.food.price * quantity_difference
+          price: recipe_food.food.price 
         }
     end
 
@@ -128,7 +118,7 @@ def general_calculate_quantity_differences(recipes, inventories)
             }
             
           end
-          @unique_foods[food.id][:price] = food.price * quantity_difference
+          @unique_foods[food.id][:price] = food.price
         end
         
       end
