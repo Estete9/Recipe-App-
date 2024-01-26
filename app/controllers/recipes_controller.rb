@@ -8,6 +8,13 @@ class RecipesController < ApplicationController
     render :index
   end
 
+  def shopping_list
+    @recipe = Recipe.find(params[:recipe_id])
+    @inventory = Recipe.find(params[:inventory_id])
+
+    @missing_foods = @recipe.foods - @inventory.foods
+  end
+
   # GET /recipes or /recipes.json
   def index
     @recipes = Recipe.where(user_id: current_user.id)
