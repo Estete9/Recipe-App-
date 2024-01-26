@@ -13,14 +13,14 @@
 
       <!-- Dropdown Button -->
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Opciones
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Opción 1</a>
-          <a class="dropdown-item" href="#">Opción 2</a>
-          <a class="dropdown-item" href="#">Opción 3</a>
-        </div>
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+        Inventories
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Opción 1</a>
+        <a class="dropdown-item" href="#">Opción 2</a>
+        <a class="dropdown-item" href="#">Opción 3</a>
+      </div>
       </div>
              
       </div>
@@ -33,12 +33,18 @@
 </div>
 
 <script>
-document.getElementById('customCloseButton').addEventListener('click', function() {
+// Abre y cierra manualmente el menú desplegable al hacer clic en el botón dropdown
+document.getElementById('dropdownMenuButton').addEventListener('click', function () {
+  var dropdownMenu = document.querySelector('.dropdown-menu');
+  dropdownMenu.classList.toggle('show');
+});
+
+document.getElementById('customCloseButton').addEventListener('click', function () {
   // Código adicional si es necesario antes de cerrar el modal
   $('#exampleModal').modal('hide');
 });
 
-document.getElementById('customSaveButton').addEventListener('click', function() {
+document.getElementById('customSaveButton').addEventListener('click', function () {
   // Código adicional si es necesario antes de cerrar el modal
   $('#exampleModal').modal('hide');
 });
