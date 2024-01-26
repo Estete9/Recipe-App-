@@ -1,5 +1,4 @@
 class FoodInventoriesController < ApplicationController
-
   def new
     @food_inventory = FoodInventory.new
     @inventory_id = params[:inventory_id]
@@ -29,5 +28,4 @@ class FoodInventoriesController < ApplicationController
   def food_inventory_params
     params.require(:food_inventory).permit(:quantity, :inventory_id, :food_id)
   end
-
 end
