@@ -1,9 +1,9 @@
 # spec/factories/foods.rb
 FactoryBot.define do
   factory :food do
-    name { 'Sample Food' }
+    name { Faker::Lorem.word }
     measurement_unit { 'unit' }
-    price { 10.99 }
+    price { Faker::Number.decimal(l_digits: 2) }
 
     association :user
 

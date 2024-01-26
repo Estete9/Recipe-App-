@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :recipe do
-    name { 'Sample Recipe' }
-    preparation_time { '30 minutes' }
-    cooking_time { '1 hour' }
-    description { 'A delicious sample recipe' }
+    name { Faker::Lorem.word }
+    preparation_time { "#{Faker::Number.between(from: 1, to: 100)} minutes" }
+    cooking_time { "#{Faker::Number.between(from: 1, to: 3)} hours" }
+    description { Faker::Lorem.sentence }
     public { true }
 
     # Assuming you have a user factory for associating the recipe with a user
