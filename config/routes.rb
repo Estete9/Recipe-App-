@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :recipes, except: [:update, :edit ]
   resources :inventories, except: [:update, :edit]
   resources :recipe_foods, only: [:create, :show, :index, :new, :destroy ]
+    get 'general_shopping_list', to: 'recipes#general_shopping_list'
+   
 
   devise_for :users, controllers: {
         sessions: 'users/sessions',
