@@ -14,6 +14,7 @@ class RecipesController < ApplicationController
 
     @missing_foods = calculate_quantity_differences(@recipe, @inventory)
     @total_missing_foods = calculate_total_missing_foods(@missing_foods)
+    @total_price = calculate_total_price(@missing_foods)
   end
 
   # GET /recipes or /recipes.json
@@ -79,6 +80,15 @@ class RecipesController < ApplicationController
     end
 
     total_quantity
+  end
+
+  def calculate_total_price(differences)
+    total_price = 0
+    differences.each do |item|
+      total_price += item[:quantity_difference] * item[:price]
+    end
+
+    total_price
   end
 
   def calculate_quantity_differences(recipe, inventory)
