@@ -32,7 +32,7 @@
         <tr>
           <td><%= recipe_food.food.name %></td>
           <td><%= recipe_food.quantity %></td>
-          <td><%= recipe_food.food.price %></td>
+          <td><%= "#{recipe_food.food.price * recipe_food.quantity}" %></td>
           <td><button>Modify</button>
           <%= link_to "Remove", recipe_food_path(recipe_food.id), class: "btn btn-ountline-danger", method: :delete, data: { turbo_method: :delete } %>
           

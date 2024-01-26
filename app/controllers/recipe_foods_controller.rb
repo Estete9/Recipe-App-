@@ -12,7 +12,7 @@ class RecipeFoodsController < ApplicationController
   end
 
   def create
-  @recipe_food = RecipeFood.new(recipe_food_params)
+    @recipe_food = RecipeFood.new(recipe_food_params)
     if @recipe_food.save
       flash[:success] = 'Ingredient was successfully added.'
       redirect_to recipe_path(id: @recipe_food.recipe_id)
@@ -36,4 +36,3 @@ class RecipeFoodsController < ApplicationController
     params.require(:recipe_food).permit(:quantity, :recipe_id, :food_id)
   end
 end
-
