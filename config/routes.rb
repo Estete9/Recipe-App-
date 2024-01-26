@@ -3,7 +3,9 @@
 Rails.application.routes.draw do
 
   root 'recipes#public'
-  
+
+  get 'shopping_list', to: 'recipes#shopping_list'
+
   resources :food_inventories
 
   resources :foods, except: [:update, :edit]

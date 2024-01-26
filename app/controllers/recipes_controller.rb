@@ -8,6 +8,15 @@ class RecipesController < ApplicationController
     render :index
   end
 
+  def shopping_list
+    @recipe = Recipe.includes(:recipe_foods).find(params[:recipe_id])
+    @inventory = Inventory.includes(:food_inventories).find(params[:inventory_id])
+
+    @missing_foods = calculate_quantity_differences(@recipe, @inventory)
+    @total_missing_foods = @missing_foods.length
+    @total_price = calculate_total_price(@missing_foods)
+  end
+
   # GET /recipes or /recipes.json
   def index
     @recipes = Recipe.where(user_id: current_user.id)
@@ -51,6 +60,38 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  def calculate_total_price(differences)
+    total_price = 0
+    differences.each do |item|
+      total_price += item[:price]
+    end
+
+    total_price
+  end
+
+  def calculate_quantity_differences(recipe, inventory)
+    differences = []
+
+    recipe.recipe_foods.each do |recipe_food|
+      food_inventory = inventory.food_inventories.find_by(food: recipe_food.food)
+
+      quantity_difference =
+        if food_inventory.nil?
+          recipe_food.quantity
+        else
+          recipe_food.quantity - food_inventory.quantity
+        end
+
+        differences << {
+          food: recipe_food.food,
+          quantity_difference: quantity_difference,
+          price: recipe_food.food.price * quantity_difference
+        }
+    end
+
+    differences
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_recipe
