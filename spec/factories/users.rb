@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
+    name {Faker::Lorem.word}
     email { Faker::Internet.email }
-    password { 'password123' } # Replace with your desired default password
-    # Add other attributes as needed
+    password { 'password123' }
   end
 end
