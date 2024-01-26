@@ -13,6 +13,7 @@ class RecipesController < ApplicationController
     @inventory = Inventory.includes(:food_inventories).find(params[:inventory_id])
 
     @missing_foods = calculate_quantity_differences(@recipe, @inventory)
+    @total_missing_foods = calculate_total_missing_foods(@missing_foods)
   end
 
   # GET /recipes or /recipes.json
@@ -59,6 +60,16 @@ class RecipesController < ApplicationController
 
   private
 
+  def calculate_total_missing_foods(differences)
+    total_quantity = 0
+
+    differences.each do |item|
+      total_quantity += item[:quantity_difference]
+    end
+
+    total_quantity
+  end
+
   def calculate_quantity_differences(recipe, inventory)
     differences = []
 
@@ -80,6 +91,11 @@ class RecipesController < ApplicationController
     end
 
     differences
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
