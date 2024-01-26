@@ -34,6 +34,10 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
+
+  # Configuration for using devise in testing
+  config.include Devise::Test::ControllerHelpers, type: :controller
+
   # Configuration to use factory bot methods
    config.include FactoryBot::Syntax::Methods
 
