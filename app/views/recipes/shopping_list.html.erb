@@ -7,8 +7,8 @@
   </div>
 
   <div>
-    <p><strong>Recipe:</strong> <%= @recipe.name %></p>
-    <p><strong>Inventory:</strong> <%= @inventory.name %></p>
+    <p><strong>Recipe:</strong> <%= link_to "#{@recipe.name}", recipe_path(params[:recipe_id]) %></p>
+    <p><strong>Inventory:</strong> <%=link_to "#{@inventory.name}", inventory_path(params[:inventory_id]) %></p>
   </div>
 </div>
 
