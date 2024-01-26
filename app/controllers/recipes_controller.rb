@@ -62,21 +62,12 @@ class RecipesController < ApplicationController
   def general_shopping_list
     @recipes = current_user.recipes
     @inventories = current_user.inventories
-    counter = 0
 
-    # Get all foods from the user's recipes
-    recipe_foods = @recipes.flat_map(&:recipe_foods)
-    recipe_foods_foods = recipe_foods.map(&:food)
+    @missing_foods = general_calculate_quantity_differences(@recipes, @inventories)
+    @total_missing_foods = @missing_foods.length
+    @total_price = calculate_total_price(@missing_foods)
 
-    # Get all foods from the user's inventories
-    inventory_foods = @inventories.flat_map(&:food_inventories)
-    inventory_foods_foods = inventory_foods.map(&:food)
-
-    # Find missing foods (those in recipes but not in inventories)
-    @missing_foods = recipe_foods_foods - inventory_foods_foods
-    if @missing_foods.any?
-      @counter +=1
-    end
+ 
   end
 
   private
@@ -84,7 +75,8 @@ class RecipesController < ApplicationController
   def calculate_total_price(differences)
     total_price = 0
     differences.each do |item|
-      total_price += item[:price]
+      price = item[:price]
+      total_price += price if price.present?
     end
 
     total_price
@@ -111,6 +103,41 @@ class RecipesController < ApplicationController
     end
 
     differences
+  end
+################################
+
+def general_calculate_quantity_differences(recipes, inventories)
+  @unique_foods = {}
+  differences = []
+  
+
+  recipes.each do |recipe|
+    inventories.each do |inventory|
+      food_inventories = inventory.food_inventories.where(food: recipe.recipe_foods.map(&:food))
+
+      food_inventories.each do |food_inventory|
+        food = food_inventory.food
+        quantity_difference = recipe.recipe_foods.find_by(food: food).quantity - food_inventory.quantity
+
+        if quantity_difference.positive?
+          if @unique_foods.key?(food.id)
+          @unique_foods[food.id][:quantity_difference] += quantity_difference
+        
+          else
+            @unique_foods[food.id] = {
+              food: food,
+              quantity_difference: quantity_difference,  
+            }
+            
+          end
+          @unique_foods[food.id][:price] = food.price * quantity_difference
+        end
+        
+      end
+    end
+  end
+  differences = @unique_foods.values
+  differences
   end
 
   # Use callbacks to share common setup or constraints between actions.
