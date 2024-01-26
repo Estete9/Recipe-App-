@@ -84,7 +84,7 @@ class RecipesController < ApplicationController
   def calculate_total_price(differences)
     total_price = 0
     differences.each do |item|
-      total_price += item[:quantity_difference] * item[:price]
+      total_price += item[:price]
     end
 
     total_price
