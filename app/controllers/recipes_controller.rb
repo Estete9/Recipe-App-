@@ -9,12 +9,10 @@ class RecipesController < ApplicationController
   end
 
   def shopping_list
-    @recipe = Recipe.includes(:recipe_foods).find(params[:recipe_id])
-    @inventory = Inventory.includes(:food_inventories).find(params[:inventory_id])
+    @recipe = Recipe.find(params[:recipe_id])
+    @inventory = Recipe.find(params[:inventory_id])
 
-    @missing_foods = calculate_quantity_differences(@recipe, @inventory)
-    @total_missing_foods = @missing_foods.length
-    @total_price = calculate_total_price(@missing_foods)
+    @missing_foods = @recipe.foods - @inventory.foods
   end
 
   # GET /recipes or /recipes.json
