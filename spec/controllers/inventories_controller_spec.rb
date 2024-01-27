@@ -7,6 +7,7 @@ RSpec.describe InventoriesController, type: :controller do
 
   before do
     sign_in(user)
+    follow_redirect!
   end
 
   describe 'GET #index' do

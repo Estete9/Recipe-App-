@@ -2,7 +2,7 @@ class FoodInventoriesController < ApplicationController
   def new
     @food_inventory = FoodInventory.new
     @inventory_id = params[:inventory_id]
-    @foods = Food.where(user_id: current_user.id)
+    # @foods = current_user.foods
   end
 
   def create

@@ -8,7 +8,7 @@
       <div class="col-md-7">
         <div class="mb-3">
           <%= form.label :name, class: "form-label" %>
-          <%= form.collection_select(:food_id, @foods, :id, :name, { prompt: "Select a Food" }, { class: "form-select" }) %>
+          <%= form.collection_select(:food_id, current_user.foods, :id, :name, { prompt: "Select a Food" }, { class: "form-select" }) %>
         </div>
       </div>
       <div class="col-md-5">
