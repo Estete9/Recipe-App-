@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_26_212609) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_27_184148) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,6 +83,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_26_212609) do
   add_foreign_key "foods", "users"
   add_foreign_key "inventories", "users"
   add_foreign_key "recipe_foods", "foods"
-  add_foreign_key "recipe_foods", "recipes"
+  add_foreign_key "recipe_foods", "recipes", on_delete: :cascade
   add_foreign_key "recipes", "users"
 end
