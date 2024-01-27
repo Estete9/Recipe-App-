@@ -138,7 +138,7 @@ class RecipesController < ApplicationController
         unique_foods[food.id] = {
           food:,
           quantity_difference:,
-          price: food.price * quantity_difference
+          price: food.price 
         }
       end
     end
