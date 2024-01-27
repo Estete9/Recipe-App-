@@ -106,7 +106,6 @@ class RecipesController < ApplicationController
     differences
   end
 
-
 def general_calculate_quantity_differences(recipes, inventories)
   @unique_foods = {}
   differences = []
