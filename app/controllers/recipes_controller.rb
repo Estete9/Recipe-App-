@@ -84,13 +84,13 @@ class RecipesController < ApplicationController
           recipe_food.quantity - food_inventory.quantity
         end
 
-        if quantity_difference.positive?
-          differences << {
-            food: recipe_food.food,
-            quantity_difference: quantity_difference,
-            price: recipe_food.food.price * quantity_difference
-          }
-        end
+      next unless quantity_difference.positive?
+
+      differences << {
+        food: recipe_food.food,
+        quantity_difference:,
+        price: recipe_food.food.price * quantity_difference
+      }
     end
 
     differences
