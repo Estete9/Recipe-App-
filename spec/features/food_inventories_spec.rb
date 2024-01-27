@@ -1,17 +1,12 @@
 # spec/features/food_inventories_spec.rb
 require 'rails_helper'
 
-require 'pry'
-
 RSpec.feature 'Food Inventories', type: :feature do
   let(:user) { create(:user) }
   let(:inventory) { create(:inventory, user: user) }
   let(:food) { create(:food, user: user) }
 
   before do
-    # Instead of creating the associated records in the test, rely on the factories
-    # This ensures that the associations are correctly set up
-    # The factories will create the necessary associated records, including food_inventories
     login_as(user, scope: :user)
   end
 
@@ -24,9 +19,6 @@ RSpec.feature 'Food Inventories', type: :feature do
 
     # Explicitly wait for the dropdown to be present before interacting
     select_field = find('#food_inventory_food_id', wait: 20)
-
-
-    # binding.pry
 
     select_field.click
 
