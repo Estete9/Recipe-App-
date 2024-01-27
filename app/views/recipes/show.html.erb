@@ -12,7 +12,7 @@
   </div>
   
   <div>
-    <%= link_to "Generate shopping list", shopping_list_recipes_path %>
+    <%= button_tag "Generate shopping list", type: "button", class: "btn btn-primary", id: "openShoppingListModal", data: { bs_toggle: "modal", bs_target: "#exampleModal" } %>
     <%= link_to "Add Ingredient", new_recipe_food_path(recipe_id: @recipe.id) %>
     <hr>
   </div>

@@ -27,7 +27,22 @@
     <%= yield %>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>   
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+    
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', 'data-turbo-frame': 'head' %>
+    <%= yield :javascript %>
+    
+    <% content_for :javascript do %>
+  <script>
+    $(document).ready(function() {
+      $('#openShoppingListModal').on('click', function() {
+        // Abre manualmente el modal
+        $('#exampleModal').modal('show');
+      });
+    });
+  </script>
+<% end %>
+
 <script type="text/javascript">
   $(document).ready(function() {
     var element = document.getElementById("recipeId");

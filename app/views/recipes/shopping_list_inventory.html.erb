@@ -1,0 +1,14 @@
+-# Render the form to select inventory
+= form_tag(recipe_shopping_list_inventory_path, method: :get) do
+    %label
+    Select an inventory:
+      -# Dropdown to show inventory list
+      = select_tag(:inventory_id, options_for_select(@inventories.map { |inventory| [inventory.name, inventory.id] }), prompt: 'Select inventory')
+  
+      %br
+  
+-# Button to submit the form
+      = submit_tag('Generate Shopping List')
+  
+end
+  

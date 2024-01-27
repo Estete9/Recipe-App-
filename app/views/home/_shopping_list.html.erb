@@ -13,15 +13,23 @@
 
       <!-- Dropdown Button -->
       <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
-        Inventories
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Opción 1</a>
-        <a class="dropdown-item" href="#">Opción 2</a>
-        <a class="dropdown-item" href="#">Opción 3</a>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Inventories
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          -# Render the form to select inventory
+          = form_tag(recipe_shopping_list_inventory_path, method: :get, class: "dropdown-item") do
+            %label
+            Select an inventory:
+            -# Dropdown to show inventory list
+            = select_tag(:inventory_id, options_for_select(@inventories.map { |inventory| [inventory.name, inventory.id] }), prompt: 'Select inventory', class: "form-control")
+            %br
+            -# Button to submit the form
+            = submit_tag('Generate Shopping List', class: "btn btn-primary")
+          %br
+        </div>
       </div>
-      </div>
+      
              
       </div>
       <div class="modal-footer">
@@ -33,19 +41,18 @@
 </div>
 
 <script>
-// Abre y cierra manualmente el menú desplegable al hacer clic en el botón dropdown
-document.getElementById('dropdownMenuButton').addEventListener('click', function () {
-  var dropdownMenu = document.querySelector('.dropdown-menu');
-  dropdownMenu.classList.toggle('show');
-});
+  // Detener la propagación del evento cuando se hace clic en el menú desplegable
+  document.querySelector('.dropdown-menu').addEventListener('click', function (event) {
+    event.stopPropagation();
+  });
 
-document.getElementById('customCloseButton').addEventListener('click', function () {
-  // Código adicional si es necesario antes de cerrar el modal
-  $('#exampleModal').modal('hide');
-});
+  document.getElementById('customCloseButton').addEventListener('click', function () {
+    // Código adicional si es necesario antes de cerrar el modal
+    $('#exampleModal').modal('hide');
+  });
 
-document.getElementById('customSaveButton').addEventListener('click', function () {
-  // Código adicional si es necesario antes de cerrar el modal
-  $('#exampleModal').modal('hide');
-});
+  document.getElementById('customSaveButton').addEventListener('click', function () {
+    // Código adicional si es necesario antes de cerrar el modal
+    $('#exampleModal').modal('hide');
+  });
 </script>
