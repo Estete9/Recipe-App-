@@ -128,7 +128,7 @@ class RecipesController < ApplicationController
 
     food_inventories.each do |food_inventory|
       food = food_inventory.food
-      quantity_difference = food_inventory.quantity - recipe.recipe_foods.find_by(food:).quantity
+      quantity_difference =  recipe.recipe_foods.find_by(food:).quantity - food_inventory.quantity
 
       next unless quantity_difference.positive?
 
