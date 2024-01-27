@@ -94,16 +94,18 @@ class RecipesController < ApplicationController
           recipe_food.quantity - food_inventory.quantity
         end
 
-        differences << {
-          food: recipe_food.food,
-          quantity_difference: quantity_difference,
-          price: recipe_food.food.price 
-        }
+        if quantity_difference.positive?
+          differences << {
+            food: recipe_food.food,
+            quantity_difference: quantity_difference,
+            price: recipe_food.food.price * quantity_difference
+          }
+        end
     end
 
     differences
   end
-################################
+
 
 def general_calculate_quantity_differences(recipes, inventories)
   @unique_foods = {}
@@ -129,13 +131,19 @@ def general_calculate_quantity_differences(recipes, inventories)
             }
             
           end
-          @unique_foods[food.id][:price] = food.price
+          @unique_foods[food.id][:price] = food.price 
         end
         
       end
     end
   end
-  differences = @unique_foods.values
+  @unique_foods.values.each do |unique_food|
+  differences << {
+    food: unique_food[:food],
+    quantity_difference: unique_food[:quantity_difference],
+    price: unique_food[:quantity_difference] * unique_food[:price] 
+  }
+end
   differences
   end
 
