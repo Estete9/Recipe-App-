@@ -8,6 +8,7 @@ class FoodInventoriesController < ApplicationController
   def create
     @food_inventory = FoodInventory.new(food_inventory_params)
     if @food_inventory.save
+      flash[:success] = 'Food was successfully added to the inventory.'
       redirect_to inventory_path(id: @food_inventory.inventory_id)
     else
       render :new, alert: 'Failed to add ingredient'
@@ -15,7 +16,6 @@ class FoodInventoriesController < ApplicationController
   end
 
   def destroy
-    # @inventory_id = params[:inventory_id]
     @food_inventory = FoodInventory.find(params[:id])
 
     @food_inventory.destroy!
