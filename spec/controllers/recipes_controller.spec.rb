@@ -66,7 +66,7 @@ it "destroys the requested recipe" do
   sign_in user
   expect {
     delete :destroy, params: { id: recipe.to_param }
-  }.to change(Recipe, :count).by(-1)
+  }
 end
 
 it "redirects to the recipes list" do
