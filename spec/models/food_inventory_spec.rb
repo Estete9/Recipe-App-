@@ -4,10 +4,6 @@ RSpec.describe FoodInventory, type: :model do
   let(:user) { create(:user) }
   let(:inventory) { create(:inventory, user:) }
   let(:food) { create(:food, user:) }
-<<<<<<< HEAD
-
-=======
->>>>>>> development
 
   it 'is valid with valid attributes' do
     food_inventory = create(:food_inventory, inventory:, food:)
