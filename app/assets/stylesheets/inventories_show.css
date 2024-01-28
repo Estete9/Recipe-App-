@@ -1,0 +1,43 @@
+.inventory-show-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+}
+
+.add-ingredient-show {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.inventory-header-show {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+}
+
+.inventory-header-show {
+width: 100vw;
+ }
+
+ table {
+   border-collapse: collapse;
+   border: 1px solid black;
+ }
+
+ th,
+ td {
+   border: 1px solid black;
+   padding: 8px;
+   text-align: left;
+ }
+
+ th {
+   background-color: darkgray;
+ }
+
+ /* Button styles */
+ .btn-outline-danger {
+   /* Add your button styling here */
+ }

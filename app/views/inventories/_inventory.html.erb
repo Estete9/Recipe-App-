@@ -4,13 +4,15 @@
 
         <strong> <h3> <%= inventory.name %> </h3> </strong>
 
-      <% if can? :destroy, inventory %>
+      <%if action_name == 'index' && can?(:destroy, inventory) %>
         <%= link_to "Remove", inventory_path(inventory.id), data: { confirm: 'Are you sure?', turbo_method: :delete }, method: :delete, class: "btn btn-danger" %>
       <% end %>
     </div>
-    <p class="Inventory-description">
-      <%= inventory.description ? inventory.description : 'No description available' %>
-    </p>
+    <% if action_name == 'index' %>
+      <p class="Inventory-description">
+        <%= inventory.description ? inventory.description : 'No description available' %>
+      </p>
+    <% end %>
   </div>
 
   <% if action_name == 'show' %>
