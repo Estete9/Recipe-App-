@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show destroy]
   before_action :authenticate_user!, except: [:public]
-  
+
   def public
     @public_page = true
     @recipes = Recipe.where(public: true).order(created_at: :desc)
@@ -10,10 +10,8 @@ class RecipesController < ApplicationController
 
   def shopping_list_inventory
     load_recipe_and_inventories
-  
-    respond_to do |format|
-      format.html
-    end
+
+    respond_to(&:html)
   end
 
   def shopping_list
@@ -65,6 +63,7 @@ class RecipesController < ApplicationController
   private
 
   def load_recipe_and_inventories
+    puts "Recipe ID from params: #{params[:recipe_id]}"
     @recipe = Recipe.includes(:recipe_foods).find(params[:recipe_id])
     @inventories = Inventory.where(user_id: current_user.id)
   end
