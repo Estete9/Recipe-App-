@@ -12,27 +12,17 @@
   </head>
 
   <body>
-    <%= render "home/navbar" %>
-
-    <% if flash.present? %>
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>">
-          <%= value %>
-        </div>
-      <% end %>
-    <% end %>
-
-    <% if notice.present? %>
+      <%= render "home/navbar" %>
+     <% if notice %>
       <div class="alert alert-success mx-3" role="alert">
         <%= notice %>
       </div>
-    <% end %>
-
-    <% if alert.present? %>
+      <% end %>
+      <% if alert %>
       <div class="alert alert-danger mx-3" role="alert">
         <%= alert %>
       </div>
-    <% end %>
+      <% end %>
   
     <%= yield %>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
