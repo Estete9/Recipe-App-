@@ -1,5 +1,4 @@
-<div>
-
+<div class="show-container">
   <div class="show-container" style="width: 90vw;">
     <h2><%= @recipe.name %></h2>
     <p>Preparation Time: <%= @recipe.preparation_time %> </p>
@@ -11,11 +10,11 @@
 </div>
   </div>
   
-  <div>
+  <div class="interaction-btns">
     <%= link_to "Generate shopping list", recipes_path %>
     <%= link_to "Add Ingredient", new_recipe_food_path(recipe_id: @recipe.id) %>
-    <hr>
   </div>
+  <hr>
 
 <div class="ingredient-display">
   <table>

@@ -1,38 +1,40 @@
-<h1>Shopping List</h1>
-
-<div style="display: flex; justify-content: space-between;">
-  <div>
-    <p><strong>Amount of Food to Buy:</strong> <%= @total_missing_foods %></p>
-    <p><strong>Total Value of Food Needed:</strong> <%= @total_price %></p>
+<div class="shopping-list-container">
+  <h1>Shopping List</h1>
+  
+  <div style="display: flex; justify-content: space-between; width: 70%">
+    <div class="totals-section">
+      <p><strong>Amount of Food to Buy:</strong> <%= @total_missing_foods %></p>
+      <p><strong>Total Value of Food Needed:</strong> <%= @total_price %></p>
+    </div>
+  
+    <div class="link-section">
+      <p><strong>Recipe:</strong> <%= link_to "#{@recipe.name}", recipe_path(params[:recipe_id]) %></p>
+      <p><strong>Inventory:</strong> <%=link_to "#{@inventory.name}", inventory_path(params[:inventory_id]) %></p>
+    </div>
   </div>
-
-  <div>
-    <p><strong>Recipe:</strong> <%= link_to "#{@recipe.name}", recipe_path(params[:recipe_id]) %></p>
-    <p><strong>Inventory:</strong> <%=link_to "#{@inventory.name}", inventory_path(params[:inventory_id]) %></p>
-  </div>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <% if @missing_foods.any? %>
+      <tbody>
+        <% @missing_foods.each do |item| %>
+          <tr>
+            <td><%= item[:food].name %></td>
+            <td><%= "#{item[:quantity_difference]} #{ item[:food].measurement_unit}" %> </td>
+            <td><%= item[:price] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% else %>
+      <tr>
+        <td colspan="3">Empty list for now</td>
+      </tr>
+    <% end %>
+  </table>
 </div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Food</th>
-      <th>Quantity</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <% if @missing_foods.any? %>
-    <tbody>
-      <% @missing_foods.each do |item| %>
-        <tr>
-          <td><%= item[:food].name %></td>
-          <td><%= "#{item[:quantity_difference]} #{ item[:food].measurement_unit}" %> </td>
-          <td><%= item[:price] %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% else %>
-    <tr>
-      <td colspan="3">Empty list for now</td>
-    </tr>
-  <% end %>
-</table>
