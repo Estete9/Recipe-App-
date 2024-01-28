@@ -22,8 +22,9 @@ width: 100vw;
  }
 
  table {
-   border-collapse: collapse;
-   border: 1px solid black;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
  }
 
  th,
@@ -37,7 +38,3 @@ width: 100vw;
    background-color: darkgray;
  }
 
- /* Button styles */
- .btn-outline-danger {
-   /* Add your button styling here */
- }
