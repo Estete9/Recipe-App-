@@ -7,6 +7,14 @@
   /* Add margin for spacing between items */
 }
 
+.inventories-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  text-decoration: none;
+}
+
 #inventories .inventory-content {
   /* Your styles for the inventory content */
 }
@@ -31,15 +39,4 @@
 
 .Inventory-description {
   width: 70vw;
-}
-
-.inventories-content {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-}
-
-.inventory-content {
-  text-decoration: none;
 }
