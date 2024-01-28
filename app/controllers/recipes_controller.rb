@@ -8,6 +8,12 @@ class RecipesController < ApplicationController
     render :index
   end
 
+  def shopping_list_inventory
+    load_recipe_and_inventories
+
+    respond_to(&:html)
+  end
+
   def shopping_list
     load_recipe_and_inventory
     @missing_foods = calculate_quantity_differences(@recipe, @inventory)
@@ -22,6 +28,7 @@ class RecipesController < ApplicationController
   def show
     load_recipe
     @recipe_food = @recipe.recipe_foods.includes(:food)
+    @inventories = Inventory.where(user_id: current_user.id)
   end
 
   def new
@@ -54,6 +61,12 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  def load_recipe_and_inventories
+    puts "Recipe ID from params: #{params[:recipe_id]}"
+    @recipe = Recipe.includes(:recipe_foods).find(params[:recipe_id])
+    @inventories = Inventory.where(user_id: current_user.id)
+  end
 
   def load_recipe
     @recipe = Recipe.includes(:recipe_foods).find(params[:id])
@@ -128,13 +141,13 @@ class RecipesController < ApplicationController
 
     recipe_foods.each do |recipe_food|
       food = recipe_food.food
-      food_inventory = inventory.food_inventories.find_by(food: food)
+      food_inventory = inventory.food_inventories.find_by(food:)
 
-      if food_inventory.nil?
-        quantity_difference = recipe_food.quantity
-      else
-        quantity_difference = recipe_food.quantity - food_inventory.quantity
-      end
+      quantity_difference = if food_inventory.nil?
+                              recipe_food.quantity
+                            else
+                              recipe_food.quantity - food_inventory.quantity
+                            end
 
       next unless quantity_difference.positive?
 
@@ -142,8 +155,8 @@ class RecipesController < ApplicationController
         unique_foods[food.id][:quantity_difference] += quantity_difference
       else
         unique_foods[food.id] = {
-          food: food,
-          quantity_difference: quantity_difference,
+          food:,
+          quantity_difference:,
           price: food.price
         }
       end

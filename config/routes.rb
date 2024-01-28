@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   root 'recipes#public'
 
   get 'shopping_list', to: 'recipes#shopping_list'
+  get 'shopping_list_inventory_recipe', to: 'recipes#shopping_list_inventory'
+  get 'modal_shopping_list', to: 'recipes#shopping_list_inventory'
+
 
   resources :food_inventories
-
+  # resources :shopping_list_recipes, only: [:index]
   resources :foods, except: [:update, :edit]
 
   resources :recipes, except: [:update, :edit ]

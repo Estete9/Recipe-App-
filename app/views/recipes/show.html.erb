@@ -10,8 +10,14 @@
 </div>
   </div>
   
+<<<<<<< HEAD
+  <div>
+    <%= link_to "Generate shopping list",  modal_shopping_list_path(recipe_id: @recipe.id)   %>
+    <%= button_tag "Generate shopping list", type: "button", class: "btn btn-primary", id: "openShoppingListModal", data: { bs_toggle: "modal", bs_target: "#exampleModal" } %>
+=======
   <div class="interaction-btns">
     <%= link_to "Generate shopping list", recipes_path %>
+>>>>>>> development
     <%= link_to "Add Ingredient", new_recipe_food_path(recipe_id: @recipe.id) %>
   </div>
   <hr>
