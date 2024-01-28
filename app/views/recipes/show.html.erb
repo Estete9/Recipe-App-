@@ -1,16 +1,13 @@
 <div class="show-container">
-
-  <h2><%= @recipe.name %></h2>
-  <div class="show-container-header">
-    <div class="recipe-header">
-      <p>Preparation Time: <%= @recipe.preparation_time %> </p>
-      <p>Cooking Time: <%= @recipe.cooking_time %> </p>
-      <p> <%= @recipe.description %></p>
-    </div>
-    <div class="form-check form-switch public-switch">
-      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-      <label class="form-check-label" for="flexSwitchCheckChecked">Public</label>
-    </div>
+  <div class="show-container" style="width: 90vw;">
+    <h2><%= @recipe.name %></h2>
+    <p>Preparation Time: <%= @recipe.preparation_time %> </p>
+    <p>Cooking Time: <%= @recipe.cooking_time %> </p>
+    <p> <%= @recipe.description %></p>
+  <div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+  <label class="form-check-label" for="flexSwitchCheckChecked">Public</label>
+</div>
   </div>
   
   <div class="interaction-btns">
