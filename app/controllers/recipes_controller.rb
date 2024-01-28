@@ -137,8 +137,13 @@ class RecipesController < ApplicationController
   end
 
   def calculate_general_quantity_differences(unique_foods, recipe, inventory)
-    food_inventories = inventory.food_inventories.where(food: recipe.recipe_foods.map(&:food))
+    recipe_foods = recipe.recipe_foods
 
+    recipe_foods.each do |recipe_food|
+      food = recipe_food.food
+      food_inventory = inventory.food_inventories.find_by(food: food)
+
+<<<<<<< HEAD
     food_inventories.each do |food_inventory|
       food = food_inventory.food
       quantity_difference = if food_inventory.nil?
@@ -146,6 +151,13 @@ class RecipesController < ApplicationController
                             else
                               recipe.recipe_foods.find_by(food:).quantity - food_inventory.quantity
                             end
+=======
+      if food_inventory.nil?
+        quantity_difference = recipe_food.quantity
+      else
+        quantity_difference = recipe_food.quantity - food_inventory.quantity
+      end
+>>>>>>> development
 
       next unless quantity_difference.positive?
 
@@ -153,8 +165,13 @@ class RecipesController < ApplicationController
         unique_foods[food.id][:quantity_difference] += quantity_difference
       else
         unique_foods[food.id] = {
+<<<<<<< HEAD
           food:,
           quantity_difference:,
+=======
+          food: food,
+          quantity_difference: quantity_difference,
+>>>>>>> development
           price: food.price
         }
       end
