@@ -3,8 +3,8 @@ require 'rails_helper'
 
 RSpec.feature 'Food Inventories', type: :feature do
   let(:user) { create(:user) }
-  let(:inventory) { create(:inventory, user: user) }
-  let(:food) { create(:food, user: user) }
+  let(:inventory) { create(:inventory, user:) }
+  let(:food) { create(:food, user:) }
 
   before do
     login_as(user, scope: :user)
@@ -13,7 +13,7 @@ RSpec.feature 'Food Inventories', type: :feature do
   scenario 'User adds a new food to an inventory' do
     # Visit the page
 
-    create(:food_inventory, inventory: inventory, food: food)
+    create(:food_inventory, inventory:, food:)
 
     visit new_food_inventory_path(inventory_id: inventory.id)
 

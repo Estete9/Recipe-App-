@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe '/inventories', type: :request do
   let(:user) { create(:user) }
-  let(:inventory) { create(:inventory, user: user) }
+  let(:inventory) { create(:inventory, user:) }
 
   before do
     sign_in user
@@ -65,7 +65,7 @@ RSpec.describe '/inventories', type: :request do
 
   describe 'DELETE /inventories/:id' do
     it 'destroys the requested inventory' do
-      inventory_to_destroy = create(:inventory, user: user)
+      inventory_to_destroy = create(:inventory, user:)
       expect do
         delete inventory_path(inventory_to_destroy)
       end.to change(Inventory, :count).by(-1)

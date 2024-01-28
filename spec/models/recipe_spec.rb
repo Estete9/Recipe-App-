@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  it "is valid with valid attributes" do
+  it 'is valid with valid attributes' do
     recipe = build(:recipe)
     expect(recipe).to be_valid
   end
@@ -21,6 +21,4 @@ RSpec.describe Recipe, type: :model do
     expect(association.macro).to eq(:has_many)
     expect(association.options[:through]).to eq(:recipe_foods)
   end
-
-
 end
