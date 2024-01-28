@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tu Aplicación Rails</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  
+</head>
+<body>
+  <%= yield %>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Modal Title</h2>
+      <!-- Dropdown -->
+      <div class="dropdown">
+        <button class="dropbtn">Dropdown</button>
+        <div class="dropdown-content">
+        <%= form_tag(recipe_shopping_list_inventory_path, method: :get, class: "dropdown-item") do %>
+          <label>
+            Select an inventory:
+            <% Dropdown to show inventory list %>
+            <%= select_tag(:inventory_id, options_for_select(@inventories.map { |inventory| [inventory.name, inventory.id] }), prompt: 'Select inventory', class: "form-control") %>
+            <br>
+            <% Button to submit the form %>
+
+
+
+
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              var modal = document.getElementById('myModal');
+              var closeButton = document.getElementsByClassName('close')[0];
+            
+              // Mostrar modal
+              // (Puedes activar esto con algún evento, por ejemplo, un botón)
+              modal.style.display = 'block';
+            
+              // Cerrar modal al hacer clic en la "X"
+              closeButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+              });
+            
+              // Cerrar modal al hacer clic fuera del contenido del modal
+              window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                  modal.style.display = 'none';
+                }
+              });
+            });
+          </script>
+        </body>
+        </html>

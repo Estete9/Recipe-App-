@@ -1,0 +1,15 @@
+<div id="<%= dom_id recipe %>" class="border border-3 p-5 container ml-5 mt-5" >
+  <h2 style="width: 80vw;">
+    <%= recipe.name %>
+  </h2>
+  <div>
+    <% if can? :destroy, recipe %>
+    <%= link_to "REMOVE", recipe_path(recipe.id), data: { confirm: 'Are you sure?', turbo_method: :delete }, turbo_method: :delete %>
+    <% end %>
+  </div>
+  <div class="w-100">
+  <p class="w-80 mt-3">
+    <%= recipe.description %>
+  </p>
+</div>
+</div>

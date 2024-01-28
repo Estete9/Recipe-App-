@@ -1,0 +1,42 @@
+#inventories .inventory-item {
+  border: 1px solid #000;
+  /* Black border */
+  padding: 10px;
+  /* Add padding for spacing */
+  margin-bottom: 10px;
+  /* Add margin for spacing between items */
+}
+
+.inventories-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  text-decoration: none;
+}
+
+#inventories .inventory-content {
+  /* Your styles for the inventory content */
+}
+
+#inventories .btn-danger {
+  margin-top: 10px;
+  /* Adjust margin for spacing between "Remove" link and content */
+}
+
+
+.inventory-item-header {
+  display: flex;
+}
+
+.inventory-header {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Inventory-description {
+  width: 70vw;
+}

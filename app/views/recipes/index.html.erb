@@ -1,0 +1,17 @@
+<div id="recipes" class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-10 d-flex text-center">
+      <% if @public_page %>
+        <h1 class="text-success mt-5">Public Recipes</h1>
+      <% else %> 
+        <h1 class="text-success mt-5">My Recipes</h1>
+      <% end %>
+    </div>
+  </div>
+
+  <% @recipes.each do |recipe| %>
+    <%= link_to recipe_path(recipe.id) do %>
+      <%= render recipe %>
+    <% end %>
+  <% end %>
+</div>

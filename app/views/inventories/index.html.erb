@@ -1,0 +1,14 @@
+<div class="inventories-content">
+  <%= button_to "New Inventory", new_inventory_path, method: :get, class: "btn btn-primary new-inventory-btn" %>
+  
+  <div id="inventories">
+    <% @inventories.each do |inventory| %>
+      <div class="inventory-item">
+        <%= link_to inventory_path(inventory.id), class: "inventory-content" do %>
+          <%= render inventory %>
+        <% end %>
+  
+      </div>
+    <% end %>
+  </div>
+</div>
