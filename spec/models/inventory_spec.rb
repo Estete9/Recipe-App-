@@ -6,7 +6,7 @@ RSpec.describe Inventory, type: :model do
     expect(inventory).to be_valid
   end
 
-   it 'is not valid without a name' do
+  it 'is not valid without a name' do
     inventory = build(:inventory, name: nil)
     expect(inventory).to_not be_valid
   end
@@ -26,6 +26,4 @@ RSpec.describe Inventory, type: :model do
     expect(association.macro).to eq(:has_many)
     expect(association.options[:through]).to eq(:food_inventories)
   end
-
-
 end

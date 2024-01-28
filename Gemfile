@@ -52,6 +52,8 @@ group :development, :test do
   gem 'pry'
 
   gem 'factory_bot_rails'
+
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -77,4 +79,3 @@ gem 'devise'
 gem 'faker'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
-gem 'rails-controller-testing'
