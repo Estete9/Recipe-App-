@@ -1,0 +1,17 @@
+.show-container-header {
+  display: flex;
+}
+
+.public-switch {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.show-container {
+  padding: 50px;
+}
+
+.interaction-btns {
+  display: flex;
+  justify-content: space-between;
+}
