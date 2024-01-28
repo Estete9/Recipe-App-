@@ -78,5 +78,4 @@ gem 'cancancan', '~> 3.5'
 gem 'devise'
 gem 'faker'
 
-gem 'rails-controller-testing'
 gem 'rubocop', '>= 1.0', '< 2.0'
