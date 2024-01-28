@@ -1,22 +1,19 @@
 <div id="<%= dom_id food %>">
-<table class="table table-border table-striped" id="<%= dom_id food %>">
+<table class="table table-bordered table-striped mx-auto" style="width: 90vw;"  id="<%= dom_id food %>">
+
 <tbody>
   <tr>
-    <th>Name</th>
-    <td><%= food.name %></td>
-  </tr>
-  <tr>
-    <th>Measurement unit</th>
-    <td><%= food.measurement_unit %></td>
-  </tr>
-  <tr>
-    <th>Price</th>
-    <td><%= food.price %></td>
-  </tr>
-  <tr>
-    <th>User</th>
-    <td><%= food.user.name %></td>
+  <td style="width: 20%;"><%= food.name %></td>
+  <td style="width: 20%;"><%= food.measurement_unit %></td>
+  <td style="width: 20%;"><%= food.price %></td>
+  <td style="width: 20%;"><%= food.user.name %></td>
+  <td style="width: 20%;"><%= link_to "REMOVE", food_path(food.id), data: { confirm: 'Are you sure?', turbo_method: :delete } %></td>    
   </tr>
 </tbody>
 </table>
 </div>
+
+
+
+
+  

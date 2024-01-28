@@ -1,16 +1,23 @@
-<h1>List Foods</h1>
-
+<h1 class="text-center mt-3">List Foods</h1>
+<div class="d-flex justify-content-end mb-5" style="width: 90vw;" ><%= link_to "New food", new_food_path %></div>
 <div id="foods">
-  <table>
+  <table class="table table-bordered table-striped mx-auto" style="width: 90vw;">
+    <thead>
+  <tr>
+    <th style="width: 20%;">Name</th>
+    <th style="width: 20%;">Measurement unit</th>
+    <th style="width: 20%;">Price</th>
+    <th style="width: 20%;">User</th>
+    <th style="width: 20%;">Actions</th>
+  </tr>
+</thead>
     <tbody>
       <% @foods.each do |food| %>
         <%= render food %>
-        <p>
-          <%= link_to "Destroy this food", food_path(food.id), data: { confirm: 'Are you sure?', turbo_method: :delete } %>
-        </p>
+        
       <% end %>
     </tbody>
   </table>
 </div>
 
-<%= link_to "New food", new_food_path %>
+
